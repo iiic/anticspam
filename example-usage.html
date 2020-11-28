@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Anticspam example</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+	<form action="#post-data-sent" method="post" class="comment-form" novalidate>
+		<p class="comment-form-comment"><label for="comment">Comment</label>
+			<textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" required="required">User comment example</textarea>
+		</p>
+		<p class="comment-form-author"><label for="author">Author</label>
+			<input id="author" name="author" type="text" value="" size="30" maxlength="245" required="required">
+		</p>
+		<p class="comment-form-email"><label for="email">Email</label>
+			<input id="email" name="email" type="email" value="email@domain.tld" size="30" maxlength="100" aria-describedby="email-notes" required="required">
+		</p>
+		<p class="comment-form-url">
+			<label for="url">Web page</label> <input id="url" name="url" type="url" value="https://iiic.dev" size="30" maxlength="200">
+		</p>
+		<p class="comments-anti-spam">
+			<label for="anti-spam-equation">Anti spam: 2 + 37 + 6 ＝ ?</label>
+			<input id="anti-spam-equation" name="anti-spam-equation" type="number" required="" placeholder="2 + 37 + 6 ＝ ?">
+			<input type="hidden" name="anti-spam-result" value="">
+		</p>
+		<p class="form-submit">
+			<input name="submits" type="submit" id="submits" class="submit" value="Odeslat komentář">
+		</p>
+	</form>
+
+	<script type="text/json" id="anticspam-settings">
+		{
+			"publicKey": "8bUxgDitsLvXaBdvq2em",
+			"apiEndpoints": [ "https://domain.tls/api/endpoint/" ]
+		}
+	</script>
+	<script src="/anticspam.mjs" type="module" crossorigin="anonymous" integrity="sha256-eUi86hu2H0hyPPhP9DtMcvOKeyv5fOhH/b6fzMvQK8c="></script>

@@ -1,0 +1,35 @@
+{
+	"name": "Anticspam",
+	"version": "0.1.0",
+	"description": "Antispam hashing library Anticspam.",
+	"main": "anticspam.mjs",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/iiic/anticspam.git"
+	},
+	"keywords": [
+		"front-end",
+		"vanilla",
+		"vanilla-js",
+		"javascript",
+		"ecmascript",
+		"js",
+		"dom",
+		"mjs",
+		"antispam",
+		"anti-spam",
+		"security",
+		"SHA256",
+		"SHA-256",
+		"sha256"
+	],
+	"author": "ic <ic.czech+npmjs@gmail.com> (https://iiic.dev/#npmjs)",
+	"license": "CC-BY-SA-4.0",
+	"bugs": {
+		"url": "https://github.com/iiic/anticspam/issues"
+	},
+	"homepage": "https://iiic.dev/anticspam#npmjs"
+}
