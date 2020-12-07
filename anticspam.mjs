@@ -6,7 +6,7 @@
 * @see https://iiic.dev/anticspam
 * @license https://creativecommons.org/licenses/by-sa/4.0/legalcode.cs CC BY-SA 4.0
 * @since Q4 2020
-* @version 0.1
+* @version 0.2
 * @readonly
 */
 const AnticspamPrivate = class
@@ -243,12 +243,17 @@ const AnticspamPrivate = class
 
 	submit ( /** @type {HTMLFormElement} */ form )
 	{
+		console.debug( '%c' + this.constructor.name + '%c submit',
+			Anticspam.CONSOLE.CLASS_NAME,
+			Anticspam.CONSOLE.METHOD_NAME
+		);
+
 		if ( typeof form.submit === 'function' ) {
 			form.submit();
 		} else {
 
 			//@ts-ignore
-			form.submit.dispatchEvent( new Event( 'click' ) );
+			form.submit.click();
 		}
 	}
 
@@ -308,7 +313,7 @@ const AnticspamPrivate = class
 * @see https://iiic.dev/anticspam
 * @license https://creativecommons.org/licenses/by-sa/4.0/legalcode.cs CC BY-SA 4.0
 * @since Q4 2020
-* @version 0.1
+* @version 0.2
 */
 export class Anticspam
 {

@@ -35,7 +35,10 @@
 	<script type="text/json" id="anticspam-settings">
 		{
 			"publicKey": "8bUxgDitsLvXaBdvq2em",
-			"apiEndpoints": [ "https://domain.tls/api/endpoint/" ]
+			"apiEndpoints": [ "https://domain.tld/api/endpoint/" ],
+			"watchedFieldsQSA": {
+				"texts": ["#comment", "#author"]
+			}
 		}
 	</script>
-	<script src="/anticspam.mjs" type="module" crossorigin="anonymous" integrity="sha256-eUi86hu2H0hyPPhP9DtMcvOKeyv5fOhH/b6fzMvQK8c="></script>
+	<script src="/anticspam.mjs?v0.2" type="module" crossorigin="anonymous" integrity="sha256-u+1MW21eyzWsK3CYRQbo/HhU1RBM+bOWkO+DcLzZruY="></script>
