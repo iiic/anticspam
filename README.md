@@ -9,13 +9,16 @@ Use
 Paste the script file anywhere in the page, like any regular `javascript` module. Settings are in json identified by id `anticspam-settings`
 
 ``` html
-	<script type="text/json" id="anticspam-settings">
+<script type="text/json" id="anticspam-settings">
 		{
-			"publicKey": "8bUxgDitsLvXaBdvq2em",
-			"apiEndpoints": [ "https://domain.tls/api/endpoint/" ]
+			"publicKey": "8gUBgEitsLCXar2vq3bm",
+			"apiEndpoints": [ "https://domain.tld/api/endpoint/" ],
+			"watchedFieldsQSA": {
+				"texts": ["#comment", "#author"]
+			}
 		}
-	</script>
-<script type="module" src="/anticspam.mjs" crossorigin="anonymous" integrity="sha256-eX4Yr7bQ38SW3yw8IoeRAvu5rr1Kd2wP4pRoe/45NRE="></script>
+</script>
+<script type="module" src="/anticspam.mjs?v0.4" crossorigin="anonymous" integrity="sha256-epLx0SPGI4NDH6qzKbhDJqQeSSG6KsJdQdpgHQ2UnsSQ="></script>
 ```
 
 ### a simple example of usage is in the `example-usage.html` file ###
