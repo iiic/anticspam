@@ -10,13 +10,13 @@ Paste the script file anywhere in the page, like any regular `javascript` module
 
 ``` html
 <script type="text/json" id="anticspam-settings">
-		{
-			"publicKey": "8gUBgEitsLCXar2vq3bm",
-			"apiEndpoints": [ "https://domain.tld/api/endpoint/" ],
-			"watchedFieldsQSA": {
-				"texts": ["#comment", "#author"]
-			}
+	{
+		"publicKey": "8gUBgEitsLCXar2vq3bm",
+		"apiEndpoints": [ "https://domain.tld/api/endpoint/" ],
+		"watchedFieldsQSA": {
+			"texts": ["#comment", "#author"]
 		}
+	}
 </script>
 <script type="module" src="/anticspam.mjs?v0.4" crossorigin="anonymous" integrity="sha256-epLx0SPGI4NDH6qzKbhDJqQeSSG6KsJdQdpgHQ2UnsSQ="></script>
 ```
