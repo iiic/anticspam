@@ -6,7 +6,7 @@
 * @see https://iiic.dev/anticspam
 * @license https://creativecommons.org/licenses/by-sa/4.0/legalcode.cs CC BY-SA 4.0
 * @since Q4 2020
-* @version 0.3
+* @version 0.4
 * @readonly
 */
 const AnticspamPrivate = class
@@ -67,7 +67,7 @@ const AnticspamPrivate = class
 	async initImportWithIntegrity ( /** @type {Object} */ settings = null )
 	{
 
-		console.groupCollapsed( '%c' + this.constructor.name + '%c initImportWithIntegrity %c(' + ( settings === null ? 'without settings' : 'with settings' ) + ')',
+		console.groupCollapsed( '%cAnticspamPrivate %c initImportWithIntegrity %c(' + ( settings === null ? 'without settings' : 'with settings' ) + ')',
 			Anticspam.CONSOLE.CLASS_NAME,
 			Anticspam.CONSOLE.METHOD_NAME,
 			Anticspam.CONSOLE.INTEREST_PARAMETER
@@ -78,7 +78,6 @@ const AnticspamPrivate = class
 		return new Promise( ( /** @type { Function } */ resolve ) =>
 		{
 			const ip = settings && settings.modulesImportPath ? settings.modulesImportPath : this.settings.modulesImportPath;
-			// @ts-ignore
 			import( ip + '/importWithIntegrity.mjs' ).then( ( /** @type {Module} */ module ) =>
 			{
 				/** @type {Function} */
@@ -88,7 +87,7 @@ const AnticspamPrivate = class
 			{
 				const SKIP_SECURITY_URL = '#skip-security-test-only'
 				if ( window.location.hash === SKIP_SECURITY_URL ) {
-					console.warn( '%c' + this.constructor.name + '%c initImportWithIntegrity %c without security!',
+					console.warn( '%cAnticspamPrivate %c initImportWithIntegrity %c without security!',
 						Anticspam.CONSOLE.CLASS_NAME,
 						Anticspam.CONSOLE.METHOD_NAME,
 						Anticspam.CONSOLE.WARNING
@@ -97,7 +96,6 @@ const AnticspamPrivate = class
 					{
 						return new Promise( ( /** @type {Function} */ resolve ) =>
 						{
-							// @ts-ignore
 							import( path ).then( ( /** @type {Module} */ module ) =>
 							{
 								resolve( module );
@@ -114,7 +112,7 @@ const AnticspamPrivate = class
 
 	initFormSubmitFunction ()
 	{
-		console.debug( '%c' + this.constructor.name + '%c initFormSubmitFunction',
+		console.debug( '%cAnticspamPrivate %c initFormSubmitFunction',
 			Anticspam.CONSOLE.CLASS_NAME,
 			Anticspam.CONSOLE.METHOD_NAME
 		);
@@ -124,7 +122,7 @@ const AnticspamPrivate = class
 
 	getValuesFrom ( /** @type {HTMLFormElement} */ form )
 	{
-		console.debug( '%c' + this.constructor.name + '%c getValuesFrom',
+		console.debug( '%cAnticspamPrivate %c getValuesFrom',
 			Anticspam.CONSOLE.CLASS_NAME,
 			Anticspam.CONSOLE.METHOD_NAME,
 			{ arguments }
@@ -163,7 +161,6 @@ const AnticspamPrivate = class
 		const keys = Object.keys( dataToSend );
 		keys.forEach( ( /** @type {String} */ key ) =>
 		{
-			// @ts-ignore
 			dataToSend[ key ] = [ ...dataToSend[ key ] ]; // Set to Array
 		} );
 
@@ -172,7 +169,7 @@ const AnticspamPrivate = class
 
 	async prepareHashes ( /** @type {Object} */ dataToSend )
 	{
-		console.debug( '%c' + this.constructor.name + '%c prepareHashes',
+		console.debug( '%cAnticspamPrivate %c prepareHashes',
 			Anticspam.CONSOLE.CLASS_NAME,
 			Anticspam.CONSOLE.METHOD_NAME,
 			{ arguments }
@@ -207,7 +204,7 @@ const AnticspamPrivate = class
 
 	async prepareFetches ( hashedDataToSend )
 	{
-		console.debug( '%c' + this.constructor.name + '%c prepareFetches',
+		console.debug( '%cAnticspamPrivate %c prepareFetches',
 			Anticspam.CONSOLE.CLASS_NAME,
 			Anticspam.CONSOLE.METHOD_NAME
 		);
@@ -237,7 +234,7 @@ const AnticspamPrivate = class
 
 	submit ( /** @type {HTMLFormElement} */ form )
 	{
-		console.debug( '%c' + this.constructor.name + '%c submit',
+		console.debug( '%cAnticspamPrivate %c submit',
 			Anticspam.CONSOLE.CLASS_NAME,
 			Anticspam.CONSOLE.METHOD_NAME
 		);
@@ -245,16 +242,13 @@ const AnticspamPrivate = class
 		if ( typeof form.submit === 'function' ) {
 			form.submit();
 		} else {
-
-			//@ts-ignore
 			form.submit.click();
 		}
 	}
 
-	// @ts-ignore
 	async getAntispamResponse ( /** @type {SubmitEvent} */ event )
 	{
-		console.debug( '%c' + this.constructor.name + '%c getAntispamResponse',
+		console.debug( '%cAnticspamPrivate %c getAntispamResponse',
 			Anticspam.CONSOLE.CLASS_NAME,
 			Anticspam.CONSOLE.METHOD_NAME
 		);
@@ -269,7 +263,6 @@ const AnticspamPrivate = class
 		const hashedDataToSend = await this.prepareHashes( textFormDataToSend );
 		const promises = await this.prepareFetches( hashedDataToSend );
 
-		// @ts-ignore
 		Promise.any( promises ).then( ( /** @type {Object} */ first ) =>
 		{
 
@@ -287,7 +280,6 @@ const AnticspamPrivate = class
 				inputSignature.value = first.signature;
 			}
 			if ( form.checkValidity() ) {
-				//@ts-ignore
 				form.removeEventListener(
 					AnticspamPrivate.SUBMIT_EVENT,
 					this.formSubmitFunction,
@@ -307,7 +299,7 @@ const AnticspamPrivate = class
 * @see https://iiic.dev/anticspam
 * @license https://creativecommons.org/licenses/by-sa/4.0/legalcode.cs CC BY-SA 4.0
 * @since Q4 2020
-* @version 0.3
+* @version 0.4
 */
 export class Anticspam
 {
@@ -328,10 +320,10 @@ export class Anticspam
 
 
 	constructor (
-		/** @type {HTMLScriptElement | null} */ settingsElement = null,
+		/** @type {HTMLScriptElement | null} */ settingsElement = null
 	)
 	{
-		console.groupCollapsed( '%c' + this.constructor.name,
+		console.groupCollapsed( '%c Anticspam',
 			Anticspam.CONSOLE.CLASS_NAME
 		);
 		console.debug( '%c' + 'constructor',
@@ -407,7 +399,7 @@ export class Anticspam
 
 	async setSettings ( /** @type {Object} */ inObject )
 	{
-		console.groupCollapsed( '%c' + this.constructor.name + '%c setSettings',
+		console.groupCollapsed( '%cAnticspam %c setSettings',
 			Anticspam.CONSOLE.CLASS_NAME,
 			Anticspam.CONSOLE.METHOD_NAME
 		);
@@ -422,11 +414,9 @@ export class Anticspam
 			this.importWithIntegrity(
 				this.settings.modulesImportPath + '/object/deepAssign.mjs',
 				'sha256-qv6PwXwb5wOy4BdBQVGgGUXAdHKXMtY7HELWvcvag34='
-				// @ts-ignore
 			).then( ( /** @type {Module} */ deepAssign ) =>
 			{
 				new deepAssign.append( Object );
-				// @ts-ignore
 				this._private.settings = Object.deepAssign( this.settings, inObject ); // multi level assign
 				resolve( true );
 			} ).catch( () =>
@@ -439,7 +429,7 @@ export class Anticspam
 
 	static async sha256 ( /** @type {String} */ message )
 	{
-		console.debug( '%c' + this.constructor.name + '%c sha256 %c(' + message + ')',
+		console.debug( '%cAnticspam %c sha256 %c(' + message + ')',
 			Anticspam.CONSOLE.CLASS_NAME,
 			Anticspam.CONSOLE.METHOD_NAME,
 			Anticspam.CONSOLE.INTEREST_PARAMETER
@@ -473,7 +463,7 @@ export class Anticspam
 
 	appendAntispamOnForms ()
 	{
-		console.debug( '%c' + this.constructor.name + '%c appendAntispamOnForm',
+		console.debug( '%cAnticspam %c appendAntispamOnForm',
 			Anticspam.CONSOLE.CLASS_NAME,
 			Anticspam.CONSOLE.METHOD_NAME
 		);
@@ -485,7 +475,6 @@ export class Anticspam
 			[ ...this.formElements ].forEach( ( /** @type {HTMLFormElement} */ form ) =>
 			{
 				this.appendHiddenFieldForAntispamBy( form );
-				// @ts-ignore
 				form.addEventListener(
 					AnticspamPrivate.SUBMIT_EVENT,
 					this.formSubmitFunction,
@@ -500,7 +489,7 @@ export class Anticspam
 	 */
 	checkAntispamImportantFields ()
 	{
-		console.debug( '%c' + this.constructor.name + '%c checkAntispamImportantFields',
+		console.debug( '%cAnticspam %c checkAntispamImportantFields',
 			Anticspam.CONSOLE.CLASS_NAME,
 			Anticspam.CONSOLE.METHOD_NAME
 		);
@@ -591,7 +580,7 @@ export class Anticspam
 
 	checkRequirements ()
 	{
-		console.debug( '%c' + this.constructor.name + '%c checkRequirements',
+		console.debug( '%cAnticspam %c checkRequirements',
 			Anticspam.CONSOLE.CLASS_NAME,
 			Anticspam.CONSOLE.METHOD_NAME
 		);
@@ -612,7 +601,7 @@ export class Anticspam
 
 	initFormSubmitFunction ()
 	{
-		console.debug( '%c' + this.constructor.name + '%c initFormSubmitFunction',
+		console.debug( '%cAnticspam %c initFormSubmitFunction',
 			Anticspam.CONSOLE.CLASS_NAME,
 			Anticspam.CONSOLE.METHOD_NAME
 		);
@@ -622,7 +611,7 @@ export class Anticspam
 
 	run ()
 	{
-		console.groupCollapsed( '%c' + this.constructor.name + '%c run',
+		console.groupCollapsed( '%cAnticspam %c run',
 			Anticspam.CONSOLE.CLASS_NAME,
 			Anticspam.CONSOLE.METHOD_NAME
 		);
@@ -639,5 +628,4 @@ export class Anticspam
 
 }
 
-// @ts-ignore
 new Anticspam( document.getElementById( 'anticspam-settings' ) );

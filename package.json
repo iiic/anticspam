@@ -1,6 +1,6 @@
 {
 	"name": "Anticspam",
-	"version": "0.3.0",
+	"version": "0.4.0",
 	"description": "Antispam hashing library Anticspam.",
 	"main": "anticspam.mjs",
 	"scripts": {
