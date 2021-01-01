@@ -22,11 +22,6 @@
 		<p class="comment-form-url">
 			<label for="url">Web page</label> <input id="url" name="url" type="url" value="https://iiic.dev" size="30" maxlength="200">
 		</p>
-		<p class="comments-anti-spam">
-			<label for="anti-spam-equation">Anti spam: 2 + 37 + 6 ＝ ?</label>
-			<input id="anti-spam-equation" name="anti-spam-equation" type="number" required="" placeholder="2 + 37 + 6 ＝ ?">
-			<input type="hidden" name="anti-spam-result" value="">
-		</p>
 		<p class="form-submit">
 			<input name="submits" type="submit" id="submits" class="submit" value="Odeslat komentář">
 		</p>
@@ -34,11 +29,11 @@
 
 	<script type="text/json" id="anticspam-settings">
 		{
-			"publicKey": "8bUxgDitsLvXaBdvq2em",
+			"publicKey": "8gUBgEitsLCXar2vq3bm",
 			"apiEndpoints": [ "https://domain.tld/api/endpoint/" ],
 			"watchedFieldsQSA": {
 				"texts": ["#comment", "#author"]
 			}
 		}
 	</script>
-	<script src="/anticspam.mjs?v0.2" type="module" crossorigin="anonymous" integrity="sha256-u+1MW21eyzWsK3CYRQbo/HhU1RBM+bOWkO+DcLzZruY="></script>
+	<script src="/anticspam.mjs?v0.3" type="module" crossorigin="anonymous" integrity="sha256-v/bEFYDVMNHxM/+qaHB7nOUi69utQ7g4ZtzyAaYCwhg="></script>

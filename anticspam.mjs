@@ -6,7 +6,7 @@
 * @see https://iiic.dev/anticspam
 * @license https://creativecommons.org/licenses/by-sa/4.0/legalcode.cs CC BY-SA 4.0
 * @since Q4 2020
-* @version 0.2
+* @version 0.3
 * @readonly
 */
 const AnticspamPrivate = class
@@ -36,10 +36,6 @@ const AnticspamPrivate = class
 	 */
 	settings = {
 		description: 'This text is used as a salt for hash (sha-256). Keep this text unchanged. For more information about this anti spam library visit https://github.com/iiic/anticspam or https://iiic.dev/anticspam',
-		chars: {
-			plus: '+',
-			minus: '−',
-		},
 		watchedFieldsQSA: {
 			urls: [ '[type="url"]' ],
 			emails: [ '[type="email"]' ],
@@ -48,8 +44,6 @@ const AnticspamPrivate = class
 		publicKey: null, // public key for API access
 		apiEndpoints: [], // array one or many urls
 		splitLimit: 100,
-		antispamInputType: 'number',
-		antispamFieldsClassName: 'comments-anti-spam',
 		antispamFormsQSA: '.comment-form',
 		antispamFormFieldName: 'antispam-field-api-result',
 		antispamFormFieldNameSignature: 'antispam-field-api-signature',
@@ -313,7 +307,7 @@ const AnticspamPrivate = class
 * @see https://iiic.dev/anticspam
 * @license https://creativecommons.org/licenses/by-sa/4.0/legalcode.cs CC BY-SA 4.0
 * @since Q4 2020
-* @version 0.2
+* @version 0.3
 */
 export class Anticspam
 {
@@ -440,36 +434,6 @@ export class Anticspam
 				Object.assign( this._private.settings, inObject ); // single level assign
 				resolve( true );
 			} );
-		} );
-	}
-
-	solveMathematicalAntispamQuestion ()
-	{
-		console.debug( '%c' + this.constructor.name + '%c solveMathematicalAntispamQuestion',
-			Anticspam.CONSOLE.CLASS_NAME,
-			Anticspam.CONSOLE.METHOD_NAME
-		);
-
-		[ ...document.getElementsByClassName( this.settings.antispamFieldsClassName ) ].forEach( ( /** @type {HTMLElement} */ el ) =>
-		{
-
-			/** @type {HTMLInputElement} */
-			const input = ( el.querySelector( '[type="' + this.settings.antispamInputType + '"]' ) );
-
-			if ( input ) {
-				const reg = new RegExp( '(\\' + this.settings.chars.plus + '|' + this.settings.chars.minus + ')', 'g' );
-				const splits = input.placeholder.split( reg );
-
-				let result = Number( splits[ 0 ] ) + Number( splits[ 2 ] );
-				if ( splits[ 3 ] === this.settings.chars.minus ) {
-					result -= parseInt( splits[ 4 ] );
-				} else {
-					result += parseInt( splits[ 4 ] );
-				}
-
-				input.value = String( result );
-				input.parentElement.hidden = true;
-			}
 		} );
 	}
 
@@ -663,7 +627,6 @@ export class Anticspam
 			Anticspam.CONSOLE.METHOD_NAME
 		);
 
-		this.solveMathematicalAntispamQuestion();
 		this.checkRequirements();
 		this.checkAntispamImportantFields(); // can be skipped
 		this.initFormSubmitFunction();
